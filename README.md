@@ -13,8 +13,10 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 ## Setup Environment
 
 Load env variables:
-  - `cp .env.example .env`
-  - `source ./.load_dotenv`
+```sh
+cp .env.example .env
+source ./.load_dotenv
+```
 
 ## Learn more
 
