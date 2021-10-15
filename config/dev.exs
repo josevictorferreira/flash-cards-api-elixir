@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :flash_cards, FlashCards.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("DB_USER"),
+  password: System.get_env("DB_PASSWORD"),
   database: "flash_cards_dev",
-  hostname: "localhost",
+  hostname: System.get_env("DB_HOST"),
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
