@@ -5,8 +5,10 @@ defmodule FlashCardsWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", FlashCardsWeb do
+  scope "/api/v1", FlashCardsWeb do
     pipe_through :api
+
+    resources "/cards", CardController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development
