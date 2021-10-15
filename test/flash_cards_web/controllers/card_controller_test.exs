@@ -26,14 +26,14 @@ defmodule FlashCardsWeb.CardControllerTest do
   describe "index" do
     test "lists all cards", %{conn: conn} do
       conn = get(conn, Routes.card_path(conn, :index))
-      assert json_response(conn, 200)["data"] == []
+      assert json_response(conn, 200)["cards"] == []
     end
   end
 
   describe "create card" do
     test "renders card when data is valid", %{conn: conn} do
       conn = post(conn, Routes.card_path(conn, :create), card: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
+      assert %{"id" => id} = json_response(conn, 201)["card"]
 
       conn = get(conn, Routes.card_path(conn, :show, id))
 
@@ -43,7 +43,7 @@ defmodule FlashCardsWeb.CardControllerTest do
                "discarded" => true,
                "text" => "some text",
                "user_id" => 42
-             } = json_response(conn, 200)["data"]
+             } = json_response(conn, 200)["card"]
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -57,7 +57,7 @@ defmodule FlashCardsWeb.CardControllerTest do
 
     test "renders card when data is valid", %{conn: conn, card: %Card{id: id} = card} do
       conn = put(conn, Routes.card_path(conn, :update, card), card: @update_attrs)
-      assert %{"id" => ^id} = json_response(conn, 200)["data"]
+      assert %{"id" => ^id} = json_response(conn, 200)["card"]
 
       conn = get(conn, Routes.card_path(conn, :show, id))
 
@@ -67,7 +67,7 @@ defmodule FlashCardsWeb.CardControllerTest do
                "discarded" => false,
                "text" => "some updated text",
                "user_id" => 43
-             } = json_response(conn, 200)["data"]
+             } = json_response(conn, 200)["card"]
     end
 
     test "renders errors when data is invalid", %{conn: conn, card: card} do
