@@ -8,7 +8,9 @@ defmodule FlashCardsWeb.Router do
   scope "/api/v1", FlashCardsWeb do
     pipe_through :api
 
-    resources "/cards", CardController, except: [:new, :edit]
+    resources "/cards", CardController, except: [:new, :edit] do
+      resources "/guesses", GuessController, except: [:new, :edit]
+    end
   end
 
   # Enables LiveDashboard only for development

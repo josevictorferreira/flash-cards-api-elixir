@@ -20,4 +20,19 @@ defmodule FlashCards.CardsFixtures do
 
     card
   end
+
+  @doc """
+  Generate a guess.
+  """
+  def guess_fixture(attrs \\ %{}) do
+    {:ok, guess} =
+      attrs
+      |> Enum.into(%{
+        correct: true,
+        text: "some text"
+      })
+      |> FlashCards.Cards.create_guess()
+
+    guess
+  end
 end
