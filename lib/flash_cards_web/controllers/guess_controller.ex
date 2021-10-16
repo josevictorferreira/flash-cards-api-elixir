@@ -6,8 +6,9 @@ defmodule FlashCardsWeb.GuessController do
 
   action_fallback FlashCardsWeb.FallbackController
 
-  def index(conn, _params) do
-    guesses = Cards.list_guesses()
+  def index(conn, %{"card_id" => card_id}) do
+    {card_id_number, _} = Integer.parse(card_id)
+    guesses = Cards.list_guesses(card_id_number)
     render(conn, "index.json", guesses: guesses)
   end
 

@@ -113,8 +113,9 @@ defmodule FlashCards.Cards do
       [%Guess{}, ...]
 
   """
-  def list_guesses do
-    Repo.all(Guess)
+  def list_guesses(card_id) do
+    from(Guess, where: ^[card_id: card_id])
+      |> Repo.all()
   end
 
   @doc """
