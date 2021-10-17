@@ -29,7 +29,8 @@ defmodule FlashCards.CardsFixtures do
       attrs
       |> Enum.into(%{
         correct: true,
-        text: "some text"
+        text: "some text",
+        card_id: card_fixture().id
       })
       |> FlashCards.Cards.create_guess()
 

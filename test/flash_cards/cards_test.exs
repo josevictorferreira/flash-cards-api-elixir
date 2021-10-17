@@ -70,9 +70,9 @@ defmodule FlashCards.CardsTest do
 
     @invalid_attrs %{correct: nil, text: nil}
 
-    test "list_guesses/0 returns all guesses" do
+    test "list_guesses/1 returns all guesses" do
       guess = guess_fixture()
-      assert Cards.list_guesses() == [guess]
+      assert Cards.list_guesses(guess.card_id) == [guess]
     end
 
     test "get_guess!/1 returns the guess with given id" do
@@ -81,7 +81,8 @@ defmodule FlashCards.CardsTest do
     end
 
     test "create_guess/1 with valid data creates a guess" do
-      valid_attrs = %{correct: true, text: "some text"}
+      card = card_fixture()
+      valid_attrs = %{correct: true, text: "some text", card_id: card.id}
 
       assert {:ok, %Guess{} = guess} = Cards.create_guess(valid_attrs)
       assert guess.correct == true
